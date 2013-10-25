@@ -1,0 +1,40 @@
+extends layout
+
+block head
+    meta(charset='utf-8')
+    meta(name='viewport' , content='width=device-width,initial-scale=1.0')
+    link(rel='stylesheet',href='/stylesheets/reset.css')
+    link(rel='stylesheet',href='/stylesheets/main.css')
+    script(src='/javascripts/main.js')
+
+
+block title
+    h1.title 우리선수들 일정
+
+block section
+    table.main_table(cellspacing='0' border='1')
+        caption team Schedule
+        colgroup
+            col(width='25%')
+        thead
+            tr
+                th(scope='col')날짜</th>
+                th(scope='col')경기</th>
+                th(scope='col')리그</th>
+                th(scope='col')선수</th>
+        tbody
+                - var aDate = ['일','월','화','수','목','금','토']
+                - var checkHour = function(arg) { if (+arg <10){arg = "0" + arg} return arg}
+                - var checkMin = function(arg) { if (+arg == 0){arg+="0"} return arg}
+                each d, i in matchList
+                    tr
+                        td= d.matchDate.getMonth() + "/" + d.matchDate.getDate() +"("+ aDate[d.matchDate.getDay()] + ") " + checkHour(d.matchDate.getHours()) + ":" + checkMin(d.matchDate.getMinutes())
+                        td= d.matchClubs
+                        td= d.league
+                        td= d.name
+block footer 
+       span nigayo1
+
+block script
+       script(type='text/javascript').
+
