@@ -7,7 +7,6 @@
     //mc.removeAllSchedule();
     //mc.getPlayerNames("마인츠");
 
-
     //TODO. External file
     var LEAGUE_INFO = ['프리미어리그', '캐피털 원 컵', 'FA컵', '분데스리가','유로파리그','챔피언스리그'];
     var CLUB_INFO   = ['카디프','선덜랜드','레버쿠젠','볼프스부르크','마인츠','아우크스부르크'];
@@ -29,6 +28,7 @@
             //2. m.sports.naver.com 
             // 2.1 date
             var sToday = $('div.days3 span.today').text();
+            console.log("=======================================================================");
             console.log(sToday); //2013.09.26(목 )
             aDate_year_month= sToday.replace(/(.+)\(.+\)/,'$1').split('.'); //['2013','9','11']
 
@@ -99,12 +99,12 @@
         }
     }
 
-    // 현재시간ㅇ르 구하고, 하루 더 더한 다음 날자(date)를 계산.
+    // 현재시간을 구하고, 하루 더 더한 다음 날자(date)를 계산.
     // TODO. 7일 이내의 0702 식으로 값을 만들기 
     function getDateArrayForSearch() {
         var aResult= [];
         var now = new Date();
-        for(var i = 1 ; i < 8 ; i++) {
+        for(var i = 0 ; i < 8 ; i++) {
             var newDate = new Date(now.getTime()+(24*60*60*1000*i));
             aResult.push(oDate.getDateCusFormat(newDate));
         }
@@ -113,10 +113,10 @@
 
     function runSearch() {
         var aDate = getDateArrayForSearch();  //[20130801, 20130802....20130807]
+        console.log('aDATE ---->>>>>>> ' + aDate);
 
         //delete regacy Collection
         mc.removeSchedule();
-        console.log("runsearch middle");
 
         //7번 jsdom을 호출한다 
         aDate.forEach(function(value,i,arr) {

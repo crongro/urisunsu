@@ -1,21 +1,62 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+body, input, textarea, select, button, table{ 
+    line-height: 1.25em;
+}
 
 body {
-    font-size : 1vw;
+    font-size : 0.9em;
+    font-family : '나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;
+    color : #000;
+}
+
+/*body::after {
+    content : "";
+    background-image: url('/images/soccer-wallpapers-hd.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity : 0.4;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    position :absolute;
+    z-index:-1;
+}
+*/
+
+table {
+    border-collapse: collapse;
 }
 
 header {
-    margin : 80px 0;
+    margin : 120px 0;
 }
 h1.title {
     text-align :center;
-    font-size : 5.5em;
+    font-size : 3.5em;
     letter-spacing:0.09em;
+    color : slategray
 }
+
 
 div#wrap {
     width : 80%;
     height:auto;
     margin :0 auto;
+}
+
+section#dateInfo {
+    text-align : right;
+    margin-bottom : 10px;
+}
+
+section#dateInfo {
+    color : darkgray;
+}
+
+section#dateInfo span:nth-of-type(1) {
+    color : slategray;
 }
 
 .main_table , th , td {
@@ -26,43 +67,71 @@ div#wrap {
     width:100%;
     border-top:2px solid black;
     border-bottom:2px solid black;
-    font-family:Tahoma;
     font-size:1em;
     text-align:center
 }
 
 .main_table thead th{
-    font-size: 2.3em;
+    font-size: 1.3em;
     padding : 0.9em 0;
     color : dartgray;
-    background-color : white;
+    background-color : #E2E2E2;
 }
 
 .main_table tbody td {
-    1font-size: 2.5vmax;
     font-size: 1.2em;
     padding : 0.9em 0;
-    color : dartgray;
     border-top : 1px solid rgb(202,198,198);
+}
+
+.main_table tbody tr:nth-child(even) {
+    background : #f6f6f6;
 }
 
 caption { 
     display: none;
 }
 
-@media screen and (max-width:640px) {
+img.logo {
+    width :25%;
+    vertical-align : middle;
+    margin-right :3%;
+}
+
+footer {
+    width: 80%;
+    height: auto;
+    margin: 10% auto;
+    text-align: center;
+    opacity: 0.9;
+}
+
+
+@media screen and (max-width:720px) {
     div#wrap {
         width : 90%;
     }
-    .main_table tbody td {
-        font-size: 4em;
-        font-weight: bold;
-    }
+
     header {
         margin : 20px 0;
     }
+
     h1.title {
-        font-size : 10em;
+        font-size : 2em;
     }
+
+    .main_table thead th{
+        font-size: 1em;
+    }
+
+    .main_table tbody td span {
+        font-size: 0.75em;
+        text-shadow: 0 1px 1px #fff;
+    }
+
+    .main_table tbody td:nth-of-type(3) span{
+        font-size : 0.75em;
+    }
+
 }
 

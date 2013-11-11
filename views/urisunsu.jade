@@ -8,32 +8,61 @@ block head
     script(src='/javascripts/main.js')
 
 
+block fb
+    div#fb-root
+    script(type="text/javascript").
+         (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=402853213147941"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
+
+
 block title
-    h1.title 우리선수들 일정
+    h1.title 한 주간의 해외파 일정
 
 block section
+    section#dateInfo 
+        - var getLastUpdate = function() {
+                    -var now = new Date();
+                    -var cronHour = 6;
+                    -if(now.getHours() < cronHour) now.setDate(now.getDate()-1);
+                    -return (now.getMonth()+1 + "월 " + now.getDate() +"일 오전"+cronHour+"시");
+                    -}
+
+        span= getLastUpdate()
+        span 에 업데이트 됐어요 :-)
     table.main_table(cellspacing='0' border='1')
         caption team Schedule
         colgroup
-            col(width='25%')
+            col(width='15%')
+            col(width='15%')
+            col(width='50%')
+            col(width='20%')
         thead
             tr
                 th(scope='col')날짜</th>
+                th(scope='col')선수</th>
                 th(scope='col')경기</th>
                 th(scope='col')리그</th>
-                th(scope='col')선수</th>
         tbody
                 - var aDate = ['일','월','화','수','목','금','토']
-                - var checkHour = function(arg) { if (+arg <10){arg = "0" + arg} return arg}
-                - var checkMin = function(arg) { if (+arg == 0){arg+="0"} return arg}
+                - var checkTimeSize = function(arg) { if (+arg <10){arg = "0" + arg} return arg}
+                - var getLogoUrl = function(league) {
+                                        -if(league == "프리미어리그") return 'premier';
+                                        -else if (league == "분데스리가") return 'bundes';
+                                        -else if (league == "챔피언스리그") return 'champions';
+                                        -else return "default";
+                                        -}
                 each d, i in matchList
                     tr
-                        td= d.matchDate.getMonth() + "/" + d.matchDate.getDate() +"("+ aDate[d.matchDate.getDay()] + ") " + checkHour(d.matchDate.getHours()) + ":" + checkMin(d.matchDate.getMinutes())
-                        td= d.matchClubs
-                        td= d.league
-                        td= d.name
+                        td 
+                            span= d.matchDate.getMonth()+1 + "/" + d.matchDate.getDate() +"("+ aDate[d.matchDate.getDay()] + ") " + checkTimeSize(d.matchDate.getHours()) + ":" + checkTimeSize(d.matchDate.getMinutes())
+                        td
+                            span= d.name
+                        td 
+                            span= d.matchClubs
+                        td 
+                            img.logo(src="/images/logos/" + getLogoUrl(d.league) + ".png")
+                            span= d.league
 block footer 
-       span nigayo1
+       div.fb-like(data-href="http://125.209.199.174/urisunsu" data-width="100px;" data-layout="button_count" data-    action="like" data-show-faces="true" data-share="true")
 
 block script
        script(type='text/javascript').
