@@ -104,7 +104,7 @@
     function getDateArrayForSearch() {
         var aResult= [];
         var now = new Date();
-        for(var i = 0 ; i < 8 ; i++) {
+        for(var i = 0 ; i < 15 ; i++) {
             var newDate = new Date(now.getTime()+(24*60*60*1000*i));
             aResult.push(oDate.getDateCusFormat(newDate));
         }

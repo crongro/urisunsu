@@ -47,12 +47,17 @@ div#wrap {
 }
 
 section#dateInfo {
-    text-align : right;
-    margin-bottom : 10px;
+    color : darkgray;
 }
 
-section#dateInfo {
-    color : darkgray;
+section#dateInfo div#leagueInfo {
+    float : left;
+    font-size : 0.75em;
+}
+
+section#dateInfo div#nextDate {
+    margin-bottom : 10px;
+    float : right;
 }
 
 section#dateInfo span:nth-of-type(1) {
@@ -99,11 +104,29 @@ img.logo {
 }
 
 footer {
-    width: 80%;
+    width: 100%;
     height: auto;
-    margin: 10% auto;
+    margin: 0 auto;
     text-align: center;
     opacity: 0.9;
+}
+
+footer div:first-child {
+    text-align :right;
+    color : slategray;
+    font-size : 0.9em;
+    margin-top : 10px;
+}
+
+footer div.fb-like {
+    padding : 3% 0;
+}
+
+div#nonematch {
+    color : rgb(190, 186, 186);
+    text-align :  center;
+    margin : 10% 0%;
+    font-size : 2em;
 }
 
 
@@ -117,7 +140,7 @@ footer {
     }
 
     h1.title {
-        font-size : 2em;
+        font-size : 1.8em;
     }
 
     .main_table thead th{
@@ -125,12 +148,16 @@ footer {
     }
 
     .main_table tbody td span {
-        font-size: 0.75em;
+        font-size: 0.70em;
         text-shadow: 0 1px 1px #fff;
     }
 
     .main_table tbody td:nth-of-type(3) span{
         font-size : 0.75em;
+    }
+
+    div#nonematch {
+        font-size : 1.2em;
     }
 
 }
