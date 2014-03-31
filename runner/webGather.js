@@ -9,7 +9,7 @@
 
     //TODO. External file
     var LEAGUE_INFO = ['프리미어리그', '캐피털 원 컵', 'FA컵', '분데스리가','유로파리그','챔피언스리그'];
-    var CLUB_INFO   = ['카디프','선덜랜드','레버쿠젠','볼프스부르크','마인츠','아우크스부르크'];
+    var CLUB_INFO   = ['카디프','선덜랜드','레버쿠젠','마인츠','아우크스부르크'];
     var BASE_URL    = "http://m.sports.naver.com/worldfootball/schedule/index.nhn?category=worldfootball&date=";
 
     var result_index = 0;

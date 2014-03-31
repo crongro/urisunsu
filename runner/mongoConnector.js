@@ -59,6 +59,8 @@ console.log("called mongoConnector !!!");
 	}
 
 	exports.findPlayerNames = function(clubName1,clubName2, jsonResult, callbackFn) {
+                console.log("====================");
+                console.log("  start findPlayernames of " , clubName1);
 		/*
 		dbConnector('playerInfo' , function(db, collection) {
 				collection.findOne({"club" : clubName} , function(err, item) {
@@ -72,6 +74,7 @@ console.log("called mongoConnector !!!");
 		urisunsudb.open(function (err,urisunsudb) {
 			urisunsudb.collection('playerInfo' , function(err, collection) {
 
+                                /*
 				collection.findOne({club: clubName1}, function(err,item){
 
 					var name = "";
@@ -90,6 +93,35 @@ console.log("called mongoConnector !!!");
 						callbackFn(jsonResult);
 					});
 				});
+                                */
+
+
+                                //한팀에 여러명이 있는 경우가 있어서 findone -> find함수로 리팩토링
+
+
+                                function findNames(clubName, preName) {
+                                    collection.find({club: clubName}).toArray(function(err,items){
+                                            
+                                            var sName = items.map(function(v,i,o) {
+                                                return v.name;
+                                            }).join(",");
+
+
+                                            if(clubName === clubName1) {
+                                                findNames(clubName2, sName);
+                                            } else {
+                                                if(preName && sName) sName = preName+sName;
+                                                else if (preName && !sName) sName = preName;
+                                                //두 번째 연결이면, DB연결 끊고
+                                                urisunsudb.close();
+                                                if(sName) jsonResult['name'] = sName;
+                                                callbackFn(jsonResult);
+                                            }
+                                    });
+                                }
+
+                                findNames(clubName1);
+
 
 			});
 		});
