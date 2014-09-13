@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>console.log presentation </title>
+    </head>
+    <body> 
+        <p id="next">next paragraph</p>
+        <div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+    </body>
+
+        <script>
+            var aMsg = [
+                "this라는 게 있나요?", 
+                // this그냥 찍기
+
+                "this는 기본적으로 window를 가리킵니다", 
+                // function안에서, object에서 찍기
+
+                "this가 window를 가리킨다는 건 현재 실행중인 객체는 window하위에 있는 객체라는 걸 의미해요",
+                //window를 찍어서 함수를 호출해보기 
+
+                "this가 특정 객체를 가리키는 경우가 있어요",
+                //object형태로 구현된 함수 호출하고 this 출력하기
+
+                "그럼 이제,같은 object안에 있는 프로퍼티(메서드나 변수)에 접근하는 지 보죠",
+                //object 안에서 메서드 호출
+
+                "함수를 new 키워드로 호출하면 객체를 리턴하죠. 따라서 this가 가리키는 것도 달라져요",
+                //new fun() 하고 this 출력하기
+
+
+
+                "this는 보이는 그대로의 context를 가리키지 않아요. setTimeout 에서의 this",
+                //settimeout에서 this 출력.
+
+                "this가 원하는 곳을 가리키도록 변경할 수 있으면 좋겠어요",
+                //that으로 해결해보기 
+
+                "bind() 함수를 사용해보죠",
+                //bind함수 웹에서도 보여주기
+
+                " 여기서 this는 무얼 가리킬까요? ",
+                //addeventlistener에서의 element.callbackfun() 예제
+
+
+            ]
+
+            function x(num) {
+                console.log("%c [STEP"+num+ "] " + aMsg[num-1], "color: coral; font-size: 1.2em");
+                console.log("%c-------------------------------------------------------------------------------------", "color:gray");
+                return ;
+            }
+        </script>
+</html>
+

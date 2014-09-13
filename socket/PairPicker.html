@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<!--
+2명을 랜덤하게 지어줍니다
+-->
+
+<title>WEB UI Basic</title>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/PairPickerMain.css">
+</head>
+
+<body>
+<div id="wrap">
+
+	<div id="inputArea">
+                <form action"">
+		    <input type = "text" class="setName" id="nameBox">
+                </form>
+	</div>
+
+	<div id="adder">
+		<div>+</div>
+	</div>
+
+	<div id="board">
+	 <ul>
+	 	<!-- li><div>홍 길동</div><div>X</div></li-->
+	 </ul>
+	</div>
+
+	<div id="shuffleButton">
+		<div>ㅍ</div>
+	</div>
+
+	<div id="assignCouple">
+		
+	</div>
+	
+</div>
+
+
+<script type="_u" id="_myTS1">
+<li><div> <%=name%> </div><div class='delName'>X</div></li>
+</script>
+
+<script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+<script type="text/javascript" src="/javascripts/PairPickerMain.js"></script>
+
+</body>
+</html>
+
+

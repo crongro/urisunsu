@@ -11,6 +11,10 @@ exports.hellojisu = function(req, res){
   res.render('hello', { title: 'Hello , jisu' });
 };
 
+exports.pp = function(req, res){
+  res.render('pp', { title: 'Pair Picker!' });
+};
+
 exports.urisunsu = function(db) {
     return function(req, res) {
         var collection = db.get('matchSchedule'); //collection name

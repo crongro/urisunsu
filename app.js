@@ -5,6 +5,7 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var jsonp = require('./routes/jsonp');
+var googleBook = require('./routes/googleBook');
 var http = require('http');
 var path = require('path');
 
@@ -26,7 +27,23 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+
+//compress content
+app.use(express.compress());
+
+app.use(express.static(path.join(__dirname, 'public'), {maxAge : 365 * 24 * 60 * 60 * 1000}));
+//app.use(express.static(path.join(__dirname, 'views'), {maxAge : 365 * 24 * 60 * 60 * 1000}));
+//app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'views')));
+
+
+
+//Apply C O R S 
+app.all('*', function(req, res, next) {
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Headers", "X-Requested-With,Cache-Control,Expires,Accept, Origin, Referer, User-Agent, Content-Type, Authorization");
+     next();
+});
 
 // development only
 if ('development' == app.get('env')) {
@@ -37,23 +54,29 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/helloworld' , routes.hellojisu);
 app.get('/urisunsu', routes.urisunsu(db));
-app.get('/jsonp', jsonp.res);
+app.get('/jsonp', jsonp.res);  //view line Num7
+app.get('/googleBook1', googleBook.res);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+
+
 //// NEXT SLIDES
 //// HEE JAE 
 
-var nextslides_ctrl = require('./routes/nextslides_controller');
+var nextslides_ctrl = require('./../next_slides/nextslides_controller.js');
 
 app.all(/^\/nextslides$/, function(req, res) { res.redirect('/nextslides/'); });
 app.use("/nextslides/", express.static(__dirname + '/../next_slides/webapp/app'));
 app.use("/nextslides/partials", express.static(__dirname + '/../next_slides/webapp/app/partials'));
 app.use("/nextslides/img", express.static(__dirname + '/../next_slides/webapp/app/img'));
 
+
+
 //CORS middleware
+/*
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -61,7 +84,7 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 app.use(allowCrossDomain);
-
+*/
 //// HEE JAE - END
 
 // 크로스도메인요청 허용
@@ -102,6 +125,10 @@ app.put("/nextslides/api/1/courses/:courseId", nextslides_ctrl.put_courses_by_co
 // DB에서 강의를 삭제합니다.
 app.delete("/nextslides/api/1/courses/:courseId", nextslides_ctrl.delete_courses_by_courseId);
 
+/* GET Full slide Info */
+app.get("/nextslides/api/1/slideshare", nextslides_ctrl.get_slide_full_info);
+
+
 /**
 * blackListedSlides, slides, inbox 의 CRUD 구현
 **/
@@ -112,7 +139,7 @@ app.get("/nextslides/api/1/:slideGroupName/:id", nextslides_ctrl.get_slides_by_g
 /* CREATE */
 app.post("/nextslides/api/1/:slideGroupName", nextslides_ctrl.post_slides_by_groupName);
 /* UPDATE */
-app.put("/nextslides/api/1/:slideGroupName", nextslides_ctrl.put_slides_by_groupName_and_id);
+app.put("/nextslides/api/1/:slideGroupName/:id", nextslides_ctrl.put_slides_by_groupName_and_id);
 /* DELETE */
 app.delete("/nextslides/api/1/:slideGroupName/:id", nextslides_ctrl.delete_slides_by_groupName_and_id);	
 

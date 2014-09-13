@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+
+<title> CSS Garden </title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css" media="screen">
+
+<style>
+
+@-webkit-keyframes wave2 {
+	from {
+		left : -300px;
+		background-position: -1031px 0px;
+	}
+	to {
+		left : -300px;
+		background-position: -1415px 0px;
+	}
+}
+/*Safari and Chrome:*/
+
+@-webkit-keyframes wave {
+	to {
+		background-position: -1031px 0px;
+		left : -300px;
+	}
+}
+
+#stage {
+	left : 0px;
+	width  : 50px;
+	height : 64px;
+	background: url(img/s.png) -7px 0;
+}
+
+#stage:hover{
+	-webkit-animation : 1.5s wave steps(16), 1.5s 1.5s wave2 steps(6);
+}
+
+
+</style>
+<script type="text/javascript">
+</script>
+
+<html>
+<body>
+	<div id="outside">
+
+		<div id="stage" class="centerVertical">
+			
+		</div>
+		
+	</div>
+</body>
+	
+</html>

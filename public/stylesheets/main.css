@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url('/stylesheets/nanumgothic.css');
 
 body, input, textarea, select, button, table{ 
     line-height: 1.25em;
@@ -98,9 +98,10 @@ caption {
 }
 
 img.logo {
-    width :25%;
     vertical-align : middle;
     margin-right :3%;
+    width :25%;
+    height:auto;
 }
 
 footer {
